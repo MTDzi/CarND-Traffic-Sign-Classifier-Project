@@ -1,4 +1,4 @@
-#**Build a Traffic Sign Recognition Project**
+# **Build a Traffic Sign Recognition Project**
 
 The goals / steps of this project are the following:
 * Load the data set (see below for links to the project data set)
@@ -12,8 +12,8 @@ The goals / steps of this project are the following:
 [//]: # (Image References)
 
 [image1]: ./img/class_imbalance_train.png ""
-[image2]: ./img/class_imbalance_train.png ""
-[image3]: ./img/class_imbalance_train.png ""
+[image2]: ./img/class_imbalance_valid.png ""
+[image3]: ./img/class_imbalance_test.png ""
 [image4]: ./img/before_preprocessing.png "Original image"
 [image5]: ./img/after_preprocessing.png "Normalized image"
 [image6]: ./downloaded_images/original_15.jpg "No vehicles"
@@ -52,7 +52,9 @@ I also checked the class imbalance in the training, validation, and test set, be
 Here are the bar charts for class counts:
 
 ![alt text][image1]
+
 ![alt text][image2]
+
 ![alt text][image3]
 
 ### Design and Test a Model Architecture
@@ -63,8 +65,11 @@ between signs, and therefore it might also convey something to the model.
 On the other hand, I guess traffic signs are perfectly readable for color-blind people. But still, color carries information, and I didn't want to throw that information away.
 
 Anyway, I did use normalization because from what I've learned in the lecture, gradient-descent-based techniques benefit when the input vectors have similar distributions across all features. Here's an example of an image before preprocessing:
+
 ![alt text][image4]
+
 and after:
+
 ![alt text][image5]
 
 I did not use image augmentation, because I knew this will lead to a longer learning process, I needed to use less computationally expensive regularization techniques (hence the dropout). But still, at first I thought of flipping the signs horizontally, but then I realized that some (most?) of the signs have horizontal orientation, e.g. all of the "Speed limit (X km/h)" signs are read from left to right.
@@ -138,9 +143,21 @@ What was much stronger evidence was the accuracy on the 8 images downloaded from
 
 Here are eight German traffic signs that I found on the web:
 
-![alt text][image6] ![alt text][image7] ![alt text][image8]
-![alt text][image9] ![alt text][image10] ![alt text][image11]
-![alt text][image12] ![alt text][image13]
+![alt text][image6]
+
+![alt text][image7]
+
+![alt text][image8]
+
+![alt text][image9]
+
+![alt text][image10]
+
+![alt text][image11]
+
+![alt text][image12]
+
+![alt text][image13]
 
 The first image might be confused with some of the speed limit signs, the second one
 
@@ -150,9 +167,9 @@ Here are the results of the prediction:
 
 | Image			        |     Prediction	        					|
 |:---------------------:|:---------------------------------------------:|
-| No vehicles      		| Priority road   									|
+| No vehicles      		| **Priority road**   									|
 | Go straight or right     			| Go straight or right 										|
-| Speed limit (100km/h)					| Speed limit (80km/h)											|
+| Speed limit (100km/h)					| **Speed limit (80km/h)**											|
 | Roundabout mandatory	      		| Roundabout mandatory					 				|
 | No entry			| No entry      							|
 | Turn right ahead | Turn right ahead |
@@ -167,7 +184,11 @@ The model was able to correctly guess 6 of the 8 traffic signs, which gives an a
 
 The code for making predictions on my final model is located in the **TOP 5 predictions** section.
 
-For the first image, the model was confused, it isn't sure about any one class (all predictions are lower than 50%), and the right label ("No vehicles") didn't even make it to the top 5 predictions. The top five soft max probabilities were
+For the first image,
+
+![alt text][image6]
+
+the model was confused, it isn't sure about any one class (all predictions are lower than 50%), and the right label ("No vehicles") didn't even make it to the top 5 predictions. The top five soft max probabilities were
 
 | Probability         	|     Prediction	        					|
 |:---------------------:|:---------------------------------------------:|
@@ -178,7 +199,11 @@ For the first image, the model was confused, it isn't sure about any one class (
 | 0.10% | Speed limit (70km/h) |
 
 
-For the second image, the model was spot on right: it was 100% certain about the correct label "Go straight or right":
+For the second image,
+
+![alt text][image7]
+
+the model was spot on: it was 100% certain about the correct label "Go straight or right":
 
 | Probability         	|     Prediction	        					|
 |:---------------------:|:---------------------------------------------:|
@@ -188,7 +213,11 @@ For the second image, the model was spot on right: it was 100% certain about the
 | 0.00% | Roundabout mandatory |
 | 0.00% | Turn left ahead |
 
-For the third image, the model again was very confident ("Priority road" was indeed the right label):
+For the third image,
+
+![alt text][image8]
+
+the model again was very confident ("Priority road" was indeed the right label):
 
 | Probability         	|     Prediction	        					|
 |:---------------------:|:---------------------------------------------:|
@@ -198,7 +227,11 @@ For the third image, the model again was very confident ("Priority road" was ind
 | 0.00% | End of no passing by vehicles over 3.5 metric tons |
 | 0.00% | Traffic signals |
 
-For the fourth image, the model failed to recognize that the image was "Speed limit (100km/h)" and instead "thought" that it was "Speed limit (80km/h)", but it wasn't very confident about it (all predictions <50%):
+For the fourth image,
+
+![alt text][image9]
+
+the model failed to recognize that the image was "Speed limit (100km/h)" and instead "thought" that it was "Speed limit (80km/h)", but it wasn't very confident about it (all predictions <50%):
 
 | Probability         	|     Prediction	        					|
 |:---------------------:|:---------------------------------------------:|
@@ -208,7 +241,11 @@ For the fourth image, the model failed to recognize that the image was "Speed li
 | 1.26% | Speed limit (50km/h) |
 | 0.48% | Road work |
 
-The fifth image was easy for the model ("Roundabout mandatory" was indeed the right label):
+The fifth image,
+
+![alt text][image10]
+
+was easy for the model ("Roundabout mandatory" was indeed the right label):
 
 | Probability         	|     Prediction	        					|
 |:---------------------:|:---------------------------------------------:|
@@ -218,7 +255,11 @@ The fifth image was easy for the model ("Roundabout mandatory" was indeed the ri
 | 0.00% | End of no passing |
 | 0.00% | Keep right |
 
-The sixth image was correctly identified as "No entry":
+The sixth image,
+
+![alt text][image11]
+
+ was correctly identified as "No entry":
 
 | Probability         	|     Prediction	        					|
 |:---------------------:|:---------------------------------------------:|
@@ -228,7 +269,11 @@ The sixth image was correctly identified as "No entry":
 | 0.00% | Speed limit (20km/h) |
 | 0.00% | Speed limit (30km/h) |
 
-The seventh image was also correctly labeled, the label was: "Turn right ahead":
+The seventh image,
+
+![alt text][image12]
+
+was also correctly labeled, the label was: "Turn right ahead":
 
 | Probability         	|     Prediction	        					|
 |:---------------------:|:---------------------------------------------:|
@@ -238,7 +283,11 @@ The seventh image was also correctly labeled, the label was: "Turn right ahead":
 | 0.00% | Traffic signals |
 | 0.00% | Keep right |
 
-And the final, eight image, was also correctly identified as "Speed limit (50km/h)":
+And the final, eight image,
+
+![alt text][image13]
+
+was also correctly identified ("Speed limit (50km/h)"):
 
 | Probability         	|     Prediction	        					|
 |:---------------------:|:---------------------------------------------:|
